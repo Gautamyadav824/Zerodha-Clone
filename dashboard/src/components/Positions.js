@@ -1,7 +1,6 @@
 
 import React from "react";
-import {holdings, positions} from "../data/data";
-
+import { positions } from "../data/data";
 
 const Positions = () => {
   return (
@@ -35,7 +34,7 @@ const Positions = () => {
                           <td>{stock.avg.toFixed(2)}</td>
                           <td>{stock.price.toFixed(2)}</td>
                           
-                          <td className={profClass}>{(curValue - stock.avg * stock.qty). toFixed(2)}</td>
+                          <td className={profClass}>{(curValue - stock.avg * stock.qty).toFixed(2)}</td>
                           
                           <td className={dayClass}>{stock.day}</td>
                         </tr>
