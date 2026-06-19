@@ -11,12 +11,17 @@ import SupportPage from "./landing_page/support/SupportPage";
 import Navbar from './landing_page/Navbar';
 import Footer from './landing_page/Footer';
 import NotFound from './landing_page/NotFound';
+import { AppContentProvider } from './context/aapContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+<AppContentProvider>
  <BrowserRouter>
+ <ToastContainer/>
  <Navbar/>
  <Routes>
   <Route path='/' element={<HomePage/>}/>
@@ -29,5 +34,6 @@ root.render(
  </Routes>
  <Footer/>
  </BrowserRouter>
+ </AppContentProvider>
 );
 

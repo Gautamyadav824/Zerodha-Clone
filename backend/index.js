@@ -1,27 +1,32 @@
 require("dotenv").config();
+
+const dns = require("dns");
 const express = require("express");
 const mongoose = require("mongoose");
-
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const dns = require("dns");
-
-dns.setServers(["1.1.1.1", "8.8.8.8"]);
+const cookieParser = require("cookie-parser");
 
 const { HoldingsModel } = require("./model/HoldingsModel");
+
 const { PositionsModel } = require("./model/PositionsModel");
-const { OrdersModel } = require("./model/OrdersModel");
+const { OrdersModel } = require("./model/OrdersModels");
 
 const PORT = process.env.PORT || 3002;
-const uri = process.env.MONGO_URL ;
-const app = express();
+const uri = process.env.MONGO_URL;
 
-app.use(cors());
+const app = express();
+const authRoutes = require("./routes/authRoutes.js");
+const userRoutes = require("./routes/userRoutes.js")
+
+app.use(cors({ origin: true, credentials: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 // app.get("/addHoldings", async (req, res) => {
-//   console.log("/addHoldings called");
-
 //   let tempHoldings = [
 //     {
 //       name: "BHARTIARTL",
@@ -134,105 +139,106 @@ app.use(bodyParser.json());
 //     },
 //   ];
 
-//   try {
-//     console.log(`saving ${tempHoldings.length} holdings`);
-//     const savePromises = tempHoldings.map((item) => {
-//       const NewHolding = new HoldingsModel({
-//         name: item.name,
-//         qty: item.qty,
-//         avg: item.avg,
-//         price: item.price,
-//         net: item.net,
-//         day: item.day,
-//       });
-//       return NewHolding.save();
+//   tempHoldings.forEach((item) => {
+//     let newHolding = new HoldingsModel({
+//       name: item.name,
+//       qty: item.qty,
+//       avg: item.avg,
+//       price: item.price,
+//       net: item.day,
+//       day: item.day,
 //     });
-//     const saveResults = await Promise.all(savePromises);
-//     console.log(`saved ${saveResults.length} holdings`);
-//     res.send("Done!");
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Failed to add holdings");
-//   }
+
+//     newHolding.save();
+//   });
+//   res.send("Done!");
 // });
 
 // app.get("/addPositions", async (req, res) => {
-//   let tempPositions =[
+//   let tempPositions = [
 //     {
-//     product: "CNC",
-//     name: "EVEREADY",
-//     qty: 2,
-//     avg: 316.27,
-//     price: 312.35,
-//     net: "+0.58%",
-//     day: "-1.24%",
-//     isLoss: true,
-//   },
-//   {
-//     product: "CNC",
-//     name: "JUBLFOOD",
-//     qty: 1,
-//     avg: 3124.75,
-//     price: 3082.65,
-//     net: "+10.04%",
-//     day: "-1.35%",
-//     isLoss: true,
-//   },
+//       product: "CNC",
+//       name: "EVEREADY",
+//       qty: 2,
+//       avg: 316.27,
+//       price: 312.35,
+//       net: "+0.58%",
+//       day: "-1.24%",
+//       isLoss: true,
+//     },
+//     {
+//       product: "CNC",
+//       name: "JUBLFOOD",
+//       qty: 1,
+//       avg: 3124.75,
+//       price: 3082.65,
+//       net: "+10.04%",
+//       day: "-1.35%",
+//       isLoss: true,
+//     },
 //   ];
 
-//   try {
-//     console.log(`saving ${tempPositions.length} positions`);
-//     const savePromises = tempPositions.map((item) => {
-//       const NewPositions = new PositionsModel({
-//         product: item.product,
-//         name: item.name,
-//         qty: item.qty,
-//         avg: item.avg,
-//         price: item.price,
-//         net: item.net,
-//         day: item.day,
-//         isLoss:item.isLoss,
-//       });
-//       return NewPositions.save();
+//   tempPositions.forEach((item) => {
+//     let newPosition = new PositionsModel({
+//       product: item.product,
+//       name: item.name,
+//       qty: item.qty,
+//       avg: item.avg,
+//       price: item.price,
+//       net: item.net,
+//       day: item.day,
+//       isLoss: item.isLoss,
 //     });
-//     const saveResults = await Promise.all(savePromises);
-//     console.log(`saved ${saveResults.length} positions`);
-//     res.send("Done!");
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Failed to add Positions");
-//   }
 
+//     newPosition.save();
+//   });
+//   res.send("Done!");
 // });
 
-app.get('/allHoldings', async(req,res) => {
+app.get("/allHoldings", async (req, res) => {
   let allHoldings = await HoldingsModel.find({});
   res.json(allHoldings);
-})
-app.get('/allPostions', async(req,res) => {
-  let allPostions = await PositionsModel.find({});
-  res.json(allPostions);
-})
+});
 
-app.post("/newOrder",async(req,res) => {
+app.get("/allPositions", async (req, res) => {
+  let allPositions = await PositionsModel.find({});
+  res.json(allPositions);
+});
+
+app.post("/newOrder", async (req, res) => {
   let newOrder = new OrdersModel({
     name: req.body.name,
     qty: req.body.qty,
     price: req.body.price,
     mode: req.body.mode,
   });
+
   newOrder.save();
 
   res.send("Order saved!");
 });
 
+function ensureDnsServers() {
+  const current = dns.getServers();
+  if (!current.length || current.some((server) => server.includes("127.0.0.1"))) {
+    dns.setServers(["1.1.1.1", "8.8.8.8"]);
+    console.log("Set DNS servers to Cloudflare/Google fallback.");
+  }
+}
 
-mongoose
-  .connect(uri)
-  .then(() => {
-    console.log("DB Connected");
+async function startServer() {
+  try {
+    ensureDnsServers();
+    await mongoose.connect(uri);
+
     app.listen(PORT, () => {
-      console.log("App started");
+      console.log("App started!");
+      console.log("DB connected!");
     });
-  })
-  .catch((err) => console.error("DB Connection Error:", err.message));
+  } catch (error) {
+    console.error("Failed to start app:", error);
+    process.exit(1);
+  }
+}
+
+startServer();
