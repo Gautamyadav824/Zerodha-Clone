@@ -307,21 +307,66 @@ hr {
   height: 30px;
   text-align: center;
   position: relative;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 400;
-  color: rgb(221, 139, 221);
+  color: white;
   justify-content: center;
   align-items: center;
   border-radius: 100%;
   text-align: center;
   display: flex;
-  background: rgb(252, 229, 252);
+  background: rgb(222, 147, 147);
   margin-right: 8px;
+  font-weight: bold;
 }
 
 .profile .username {
   font-size: 0.8rem;
   font-weight: 300;
+}
+
+.profile .avatar .checkUser{
+  position: absolute;
+  display: none;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  color: rgb(124, 81, 81);
+  border-radius: 8px;
+  padding-top: 10px;
+ 
+  
+}
+.profile:hover .avatar .checkUser{
+  display: block;
+  
+}
+.check{
+  list-style: none;
+  background-color:rgba(239, 246, 245, 0.8);
+  width: 50%;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  padding-right:20px ;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  
+}
+.check li{
+  white-space: nowrap;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  
+  
+}
+.check li:hover{
+  
+  font-size: small;
+  padding: 1px;
 }
 
 /* sudo selectors */
@@ -842,4 +887,110 @@ hr {
 
 .action:hover {
   background-color: rgb(212, 212, 212);
+}
+
+.verifyemail{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   background-image: linear-gradient(to bottom right, #bfdbfe, #c084fc);
+ min-height: 100vh;
+ padding: 10px;
+}
+.verifyemail .EmailLogo{
+  width: 5%;
+  height: 50px;
+  position: absolute;
+  top: 6%;
+  left: 12%;
+  cursor: pointer;
+  
+  
+}
+
+.verifyForm{
+  background-color: rgba(15, 23, 42, 1);
+  width: 25%;
+ border-radius: 10px;
+ 
+ 
+}
+
+.verifyForm h1{
+  color: rgb(166, 240, 245);
+  text-align: center;
+  padding-top: 0;
+  font-size: 25px;
+  
+}
+
+.verifyForm p{
+  color: rgb(115, 155, 247);
+  text-align: center;
+  font-size: medium;
+  margin-bottom: 5%;
+}
+
+.emailotp{
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 5%;
+  margin-left: 2px;
+  margin-right: 2px;
+  
+ 
+}
+ .emailotpbox{
+  width: 3rem;
+  height: 3rem;
+  background-color: #333A5C;
+  color: white;
+  text-align: center;
+  font-size:x-large;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 3%;
+  margin-top: 0;
+  
+  
+}
+.button{
+  width: 90%;
+  background-image: linear-gradient(to right, #6366f1, #312e81);
+  
+  margin :5px 10px 10px 15px ;
+  color: white;
+  border-radius: 25px;
+  height: 40px;
+  align-items: center;
+  outline: none;
+  border: none;
+ font-weight: bold;
+ font-size: large;
+ margin-bottom: 9%;
+ cursor: pointer;
+ 
+}
+.DashLogin{
+  font-family:'Times New Roman', Times, serif;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(107 114 128);
+  border-radius: 25px;
+  padding: 0.2rem 0.4rem;
+  color: #0e356b;
+  font-size: medium;
+  background-color: transparent;
+  transition: 0.3s;
+  margin: 1rem;
+  cursor: pointer;
+  background-color: rgb(229, 213, 213);
+}
+.DashLogin img{
+  height: 1rem;
+  width: 1rem;
+}
+.DashLogin:hover{
+  background-color: #e3f2f6;
 }

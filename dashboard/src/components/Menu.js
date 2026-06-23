@@ -1,12 +1,27 @@
 import React, { useState } from "react";
 
 import {Link } from "react-router-dom";
+import { useContext } from "react";
+import GeneralContext from "./GeneralContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify";
+
+
 
 
 
 const Menu = () => {
   const[selectedMenu, setSelectedMenu] = useState(0);
   const[isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
+  const{userData, backendUrl, setIsLoggedin, setUserData} = useContext(GeneralContext);
+  const navigate = useNavigate();
+
+  
+  const firstLetter = userData?.name?.charAt(0).toUpperCase() || "Z";
+
+
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
@@ -15,6 +30,36 @@ const Menu = () => {
   const handleProfileClick = (index) => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
+
+  const logout = async() => {
+    try{
+      axios.defaults.withCredentials=true;
+      const{data} = await axios.post(backendUrl + "/api/auth/logout");
+      data.success && setIsLoggedin(false);
+      data.success && setUserData(false);
+     
+    }catch(error){
+      toast.error(error.message);
+    }
+  };
+
+  const sendVerificationOtp = async() =>{
+    console.log("check verifysd");
+    try{axios.defaults.withCredentials=true;
+       console.log("backendURL", backendUrl);
+      const {data} = await axios.post(backendUrl + "/api/auth/send-verify-otp")
+      console.log("send",data);
+      if(data.success){
+        navigate("/verify-email")
+        toast.success(data.message)
+      }else{
+        toast.error(data.message)
+      }
+    }catch(error){
+      console.log("ERROR:", error.response?.data || error.message);
+      toast.error(error.message);
+    }
+  }
 
   const menuClass = "menu";
   const activeMenuClass = "menu selected";
@@ -56,10 +101,28 @@ const Menu = () => {
           </li>
         </ul>
         <hr />
+        {userData ?(
         <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar">ZU</div>
-          <p className="username">USERID</p>
-        </div>
+            <div className="avatar">{firstLetter}
+              <div className="checkUser">
+                <ul className="check">
+                {!userData?.isAccountVerified && (
+                  <li onClick={sendVerificationOtp}>
+                    verify email
+                  </li>
+                  )}
+                  <li onClick={logout}>
+                    logout
+                  </li>
+                </ul>
+              </div>
+            </div>
+         
+          
+        </div>):(
+        <button className="DashLogin" onClick={() =>window.location.href = ("http://localhost:3001/signup") }>Login
+          <img src="./arrow.png"/>
+        </button>)}
       </div>
     </div>
   );
