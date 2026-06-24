@@ -104,7 +104,7 @@ function Signup() {
 
           {state !=='Login' && ( <p className="small m-3 ms-4">If you have an existing account? <a className="text-blue-500 hover:text-blue-700 text-lg hover:underline font-small" onClick={()=>{setState('Login')}} href="#" >Login</a></p>)} 
 
-            <a className="text-decoration-none small d-flex  align-items-left ms-5 ps-4 mt-4" href="#">Forgotten password?</a>
+            <a className="text-decoration-none small d-flex  align-items-left ms-5 ps-4 mt-4" onClick={() => navigate("/reset-password")}>Forgotten password?</a>
            
             
             

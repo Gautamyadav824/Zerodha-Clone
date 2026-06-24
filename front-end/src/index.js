@@ -11,6 +11,7 @@ import SupportPage from "./landing_page/support/SupportPage";
 import Navbar from './landing_page/Navbar';
 import Footer from './landing_page/Footer';
 import NotFound from './landing_page/NotFound';
+import ResetPassword from './landing_page/ResetPassword/resetPassword.js';
 import { AppContentProvider } from './context/aapContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,6 +31,7 @@ root.render(
   <Route path='/products' element={<ProductPage/>}/>
   <Route path='/pricing' element={<PricingPage/>}/>
   <Route path='/support' element={<SupportPage/>}/>
+  <Route path='/reset-password' element={<ResetPassword/>}/>
   <Route path='*' element={<NotFound/>}/>
  </Routes>
  <Footer/>

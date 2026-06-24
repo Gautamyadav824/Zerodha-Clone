@@ -11,8 +11,8 @@ router.post('/logout', logout  );
 router.post('/send-verify-otp', userAuth, sendVerifyOtp);
 router.post('/verify-email', userAuth, verifyEmail);
 router.get('/is-auth', userAuth, isAuthenticated);
-router.post('/send-reset-otp', userAuth, sendResetOtp);
-router.post('/reset-password', userAuth, resetPassword);
+router.post('/send-reset-otp', sendResetOtp);
+router.post('/reset-password', resetPassword);
 
 
 module.exports = router;
