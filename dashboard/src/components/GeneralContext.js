@@ -68,7 +68,7 @@ const getUserData = async () => {
 };
 
 useEffect(() => {
-  console.log("GeneralContext Mounted");
+  
   getAuthState();
 }, []);
 

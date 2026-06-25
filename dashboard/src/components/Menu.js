@@ -46,7 +46,7 @@ const Menu = () => {
   const sendVerificationOtp = async() =>{
     console.log("check verifysd");
     try{axios.defaults.withCredentials=true;
-       console.log("backendURL", backendUrl);
+       
       const {data} = await axios.post(backendUrl + "/api/auth/send-verify-otp")
       console.log("send",data);
       if(data.success){

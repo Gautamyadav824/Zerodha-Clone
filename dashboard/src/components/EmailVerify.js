@@ -44,7 +44,7 @@ const EmailVerify = () => {
       });
       
       if (data.success) {
-        console.log("success block");
+       
         toast.success(data.message);
         await getUserData();
         navigate("/");

@@ -32,7 +32,7 @@ export const AppContentProvider = (props) =>{
         }
     }
     useEffect(() => {
-        console.log("useeffrct coling");
+       
         getAuthState()
     }, [])
 
