@@ -10,7 +10,9 @@ const Holdings = () => {
   const { backendUrl } = useContext(GeneralContext);
 
   useEffect(() => {
-    axios.get(`${backendUrl}/allHolding`, {withCredentials=true}).then((res) => {
+    axios.get(`${backendUrl}/allHoldings`, {
+  withCredentials: true,
+}).then((res) => {
      
      setAllHolding(res.data); 
     });
