@@ -120,7 +120,7 @@ const Menu = () => {
          
           
         </div>):(
-        <button className="DashLogin" onClick={() =>window.location.href = ("http://localhost:3001/signup") }>Login
+        <button className="DashLogin" onClick={() =>window.location.href = ("https://zerodha-frontend-98f3.onrender.com/signup") }>Login
           <img src="./arrow.png"/>
         </button>)}
       </div>

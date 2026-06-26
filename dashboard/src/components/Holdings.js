@@ -1,15 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,useContext} from 'react';
 
 import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
+import GeneralContext from './GeneralContext';
 
 const Holdings = () => {
 
   const[allHoldings, setAllHolding] = useState([]);
+  const { backendUrl } = useContext(GeneralContext);
 
   useEffect(() => {
-    axios.get("http://localhost:3002/allHoldings").then((res) => {
-      console.log(res.data);
+    axios.get(`${backendUrl}/allHolding`, {withCredentials=true}).then((res) => {
+     
      setAllHolding(res.data); 
     });
 
