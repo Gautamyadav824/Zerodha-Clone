@@ -27,8 +27,8 @@ const register = async(req, res) => {
 
          res.cookie('token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            secure: true,
+            sameSite: 'none',
             path: '/',
             maxAge: 7*24*60*60*1000
         });
@@ -69,8 +69,8 @@ const login = async(req, res) => {
                 // set token as HTTP-only cookie and return token + user info
             res.cookie('token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            secure: true,
+            sameSite:  'none',
             path:'/',
             maxAge: 7*24*60*60*1000
         });
@@ -91,8 +91,8 @@ const logout = async(req, res) => {
     try{
         res.clearCookie('token', {
             httpOnly: true,
-            secure:process.env.NODE_ENV === 'production',
-            sameSite:process.env.NODE_ENV === 'production' ? 'none':'strict',
+            secure:true,
+            sameSite: 'none',
             path:'/',
         });
         return res.json({success:true, message: "Logged Out"})

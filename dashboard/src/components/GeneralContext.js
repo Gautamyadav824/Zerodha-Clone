@@ -11,7 +11,7 @@ const GeneralContext = React.createContext({
 });
 
 export const GeneralContextProvider = (props) => {
-  const backendUrl =  process.env.REACT_APP_BACKEND_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL?.replace(/\/$/, "");
   
 
   const [isBuyWindowOpen, setIsBuyWindowOpen] = useState(false);
@@ -33,9 +33,7 @@ export const GeneralContextProvider = (props) => {
   try {
     axios.defaults.withCredentials = true;
 
-    const { data } = await axios.get(
-      backendUrl + "/api/auth/is-auth"
-    );
+    const { data } = await axios.get(`${backendUrl}/api/auth/is-auth`);
 
     
 
@@ -53,8 +51,8 @@ const getUserData = async () => {
     axios.defaults.withCredentials = true;
 
     const { data } = await axios.get(
-      backendUrl + "/api/user/data"
-    );
+    `${backendUrl}/api/user/data`);
+    
 
     
 

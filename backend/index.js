@@ -19,7 +19,10 @@ const app = express();
 const authRoutes = require("./routes/authRoutes.js");
 const userRoutes = require("./routes/userRoutes.js")
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin:[
+ 'https://zerodha-dashboard-gjaq.onrender.com',
+ 'https://zerodha-frontend-98f3.onrender.com' 
+], credentials: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
