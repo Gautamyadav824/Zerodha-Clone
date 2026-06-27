@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from "react-router-dom";
+import { AppContentProvider } from "./context/aapContext";
 // import {BrowserRouter, Routes, Route} from "react-router-dom";
 // import './index.css';
 // import HomePage from './landing_page/home/HomePage';
@@ -21,9 +21,9 @@ import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <BrowserRouter>
-    <h1>BrowserRouter Working</h1>
-  </BrowserRouter>
+  <AppContentProvider>
+    <h1>Context Working</h1>
+  </AppContentProvider>
 );
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
