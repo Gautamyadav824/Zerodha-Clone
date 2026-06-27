@@ -161,14 +161,14 @@
 // export default Signup;
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import { appContent } from "../../context/aapContext";
-// import { useContext } from "react";
+import { appContent } from "../../context/aapContext";
+import { useContext } from "react";
 
 
 
 
 function Signup() {
-  // const { backendUrl } = useContext(appContent);
+  const { backendUrl } = useContext(appContent);
   const navigate = useNavigate();
 
   return <h1>Signup Loaded</h1>;
