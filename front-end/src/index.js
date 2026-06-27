@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { AppContentProvider } from "./context/aapContext";
+import { BrowserRouter } from "react-router-dom";
+import Navbar from "./landing_page/Navbar";
 // import {BrowserRouter, Routes, Route} from "react-router-dom";
 // import './index.css';
 // import HomePage from './landing_page/home/HomePage';
@@ -21,9 +22,9 @@ import { AppContentProvider } from "./context/aapContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <AppContentProvider>
-    <h1>Context Working</h1>
-  </AppContentProvider>
+  <BrowserRouter>
+  <Navbar/>
+  </BrowserRouter>
 );
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
