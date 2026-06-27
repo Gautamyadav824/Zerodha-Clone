@@ -19,8 +19,11 @@ import ReactDOM from 'react-dom/client';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<h1>React Working</h1>);
-
+root.render(
+  <BrowserRouter>
+    <h1>BrowserRouter Working</h1>
+  </BrowserRouter>
+);
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
