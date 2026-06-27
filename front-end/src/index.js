@@ -15,7 +15,7 @@ import Footer from './landing_page/Footer';
 // import NotFound from './landing_page/NotFound';
 // import ResetPassword from './landing_page/ResetPassword/resetPassword.js';
 // import { AppContentProvider } from './context/aapContext';
-// import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -23,6 +23,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
+    <ToastContainer />
   <Navbar/>
   <Footer/>
   </BrowserRouter>
