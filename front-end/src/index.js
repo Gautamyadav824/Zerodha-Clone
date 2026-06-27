@@ -23,22 +23,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
-    <ToastContainer />
-    <Navbar />
-
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/about" element={<AboutPage />} />
-      {/* <Route path="/products" element={<ProductPage />} /> */}
-      {/* <Route path="/pricing" element={<PricingPage />} /> */}
-      {/* <Route path="/support" element={<SupportPage />} /> */}
-      <Route path="/reset-password" element={<ResetPassword />} />
-    </Routes>
-
-    <Footer />
+    <Signup />
   </BrowserRouter>
 );
-
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
 // <AppContentProvider>
