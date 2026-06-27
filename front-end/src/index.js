@@ -15,7 +15,7 @@ import ResetPassword from './landing_page/ResetPassword/resetPassword.js';
 import { AppContentProvider } from './context/aapContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ReactDOM from "react-dom/client";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
