@@ -9,6 +9,7 @@ export const appContent = createContext();
 
 export const AppContentProvider = (props) =>{
     const backendUrl =  process.env.REACT_APP_BACKEND_URL;
+    console.log(backendUrl);
     const[isLoggedIn, setIsLoggedIn] = useState(false)
     const[userData, setUserData] = useState(false)
 
