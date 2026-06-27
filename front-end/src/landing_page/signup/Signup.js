@@ -160,8 +160,11 @@
 
 // export default Signup;
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
+
   return <h1>Signup Loaded</h1>;
 }
 
