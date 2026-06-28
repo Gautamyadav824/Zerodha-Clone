@@ -14,7 +14,7 @@ import SupportPage from "./landing_page/support/SupportPage";
 import Footer from './landing_page/Footer';
 // import NotFound from './landing_page/NotFound';
 import ResetPassword from './landing_page/ResetPassword/resetPassword.js';
-// import { AppContentProvider } from './context/aapContext';
+import { AppContentProvider } from './context/aapContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -22,9 +22,11 @@ import 'react-toastify/dist/ReactToastify.css';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
+  <AppContentProvider>
   <BrowserRouter>
     <Signup />
   </BrowserRouter>
+  </AppContentProvider>
 );
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
