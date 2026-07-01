@@ -40,9 +40,9 @@ function Navbar() {
                 </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/products">
+                <link class="nav-link active" to="/products">
                   Product
-                </a>
+                </link>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="/pricing">
