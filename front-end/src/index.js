@@ -32,7 +32,7 @@ root.render(
   <Route path='/pricing' element={<PricingPage/>}/>
   <Route path='/support' element={<SupportPage/>}/>
   <Route path='/reset-password' element={<ResetPassword/>}/>
-  <Route path='*' element={<NotFound/>}/>
+  <Route path='*' element={<HomePage/>}/>
  </Routes>
  <Footer/>
  </BrowserRouter>
